@@ -1,5 +1,7 @@
 # Gewichteter Blossom – die billigste Paarung in einem allgemeinen Graphen – Streamlit-Demo
 
+**[→ Demo live ausprobieren](https://sebastianhanisch-weighted-edmonds-matching-demo.streamlit.app/)**
+
 Neuntes Stück der **Matching-Linie** der "Konzepte"-Reihe für die Website "Sebastian Hanisch – Operations Research und Machine Learning", die **Konvergenz** zweier Vorgänger: [hungarian-demo](https://github.com/sebastian-hanisch/hungarian-demo) (Ungarische Methode: Gewichte, aber nur bipartit) und [blossom-demo](https://github.com/sebastian-hanisch/blossom-demo) (Blüten, aber nur ungewichtet). **Gewichteter Blossom** (Edmonds' Primal-Dual-Algorithmus, in der Literatur auch Galils Algorithmus – genau das, was `networkx.max_weight_matching` implementiert) trägt beides zusammen: dasselbe Fahrgemeinschaften-Szenario wie `blossom-demo` bekommt jetzt echte Kosten (Fahrzeit), und die Suche liefert nicht nur ein größtmögliches, sondern das **billigste** Matching – mit **Beweis**: zu jeder Ecke und jeder (womöglich verschachtelten) Blüte ein Dualwert, straff auf jeder gewählten Kante, nie negativ.
 
 Wie überall in der Linie ist das Ziel **lexikografisch**: erst größtmögliches Matching, dann geringste Kosten. Nach diesem Stück bleibt in der ganzen Matching-Linie nur noch **Stabile Mitbewohner** unscoped-ungebaut.
