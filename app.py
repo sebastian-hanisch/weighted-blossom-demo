@@ -326,7 +326,7 @@ st.markdown(
 | Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |
 |---|---|---|
 | **Jeder Fahrer nimmt genau einen Partner** | Größere Gruppen (Kapazitäten, b-Matching) brauchen andere Verfahren. | (nicht in der Linie) |
-| **Größe zählt, nicht Zufriedenheit** | Haben die Fahrer Vorlieben, ist die stabile Paarung das Ziel - und in einer Gruppe muss keine existieren. | **Stabile Mitbewohner** (nicht gebaut) |
+| **Größe zählt, nicht Zufriedenheit** | Haben die Fahrer Vorlieben, ist die stabile Paarung das Ziel - und in einer Gruppe muss keine existieren. | **Stabile Mitbewohner** (gebaut) |
 | **Alles ist vorab bekannt** | Kommen die Fahrer nacheinander und sind Zusagen bindend, ist nur Online-Matching möglich. | **Online-Matching** (gebaut) |
 | **Kleine bis mittlere Graphen** | Diese Version braucht O(n³); für riesige Graphen gibt es asymptotisch schnellere Verfahren (Gabows Skalierung). | (nicht in der Linie) |
 """

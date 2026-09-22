@@ -4,7 +4,7 @@
 
 Neuntes Stück der **Matching-Linie** der "Konzepte"-Reihe für die Website "Sebastian Hanisch – Operations Research und Machine Learning", die **Konvergenz** zweier Vorgänger: [hungarian-demo](https://github.com/sebastian-hanisch/hungarian-demo) (Ungarische Methode: Gewichte, aber nur bipartit) und [blossom-demo](https://github.com/sebastian-hanisch/blossom-demo) (Blüten, aber nur ungewichtet). **Gewichteter Blossom** (Edmonds' Primal-Dual-Algorithmus, in der Literatur auch Galils Algorithmus – genau das, was `networkx.max_weight_matching` implementiert) trägt beides zusammen: dasselbe Fahrgemeinschaften-Szenario wie `blossom-demo` bekommt jetzt echte Kosten (Fahrzeit), und die Suche liefert nicht nur ein größtmögliches, sondern das **billigste** Matching – mit **Beweis**: zu jeder Ecke und jeder (womöglich verschachtelten) Blüte ein Dualwert, straff auf jeder gewählten Kante, nie negativ.
 
-Wie überall in der Linie ist das Ziel **lexikografisch**: erst größtmögliches Matching, dann geringste Kosten. Nach diesem Stück bleibt in der ganzen Matching-Linie nur noch **Stabile Mitbewohner** unscoped-ungebaut.
+Wie überall in der Linie ist das Ziel **lexikografisch**: erst größtmögliches Matching, dann geringste Kosten. Nach diesem Stück (der Konvergenz von Ungarisch und Blossom) folgte noch der Gale-Shapley-Ast mit seinen vier Erweiterungen (Stabile Mitbewohner, Krankenhaus-Zulassung, Top Trading Cycles, Nierentausch) – die gesamte Matching-Linie ist inzwischen vollständig gebaut.
 ```
 greedy-matching-demo (Wurzel: eine gewählte Zuordnung bleibt)                     [gebaut]
   ├─ augmenting-path-demo (Verbesserungswege: Paare optimal, Kosten blind)        [gebaut]
@@ -14,7 +14,10 @@ greedy-matching-demo (Wurzel: eine gewählte Zuordnung bleibt)                  
   │    └─ blossom-demo (allgemeine Graphen: ungerade Kreise, Kontraktion)          [gebaut]
   │   Ungarisch + Blossom → weighted-blossom-demo (Gewichteter Blossom)            [dieses Stück]
   ├─ gale-shapley-demo (Vorlieben statt Kosten, stabil)                            [gebaut]
-  │    └─ Stabile Mitbewohner                                                      [nicht gebaut]
+  │    ├─ stabile-mitbewohner-demo (eine Gruppe statt zwei Seiten)                 [gebaut]
+  │    ├─ krankenhaus-zulassung-demo (many-to-one, Kapazitäten)                    [gebaut]
+  │    ├─ top-trading-cycles-demo (Tausch ohne Geld, Wohnungsmarkt)                [gebaut]
+  │    └─ nierentausch-demo (Kompatibilität statt Präferenz, kurze Zyklen)         [gebaut]
   └─ online-matching-demo (Aufträge kommen nacheinander)                           [gebaut]
 ```
 
