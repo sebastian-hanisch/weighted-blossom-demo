@@ -23,6 +23,7 @@ from wb_presets import (
     init_session_state_defaults,
     load_permalink_settings,
     randomize_seed,
+    seed_widget,
     sync_query_params,
 )
 from wb_scenario import build
@@ -125,12 +126,16 @@ with st.sidebar:
         help="Eine zufällige Karte mit Fahrern oder eine feste Lehrbuchkarte: verschachtelte bezahlte Blüten, eine Blüte mit Stiel (die hier ganz ohne Kontraktion auskommt), die Windmühle, oder eine echte bipartite Karte für die Gegenprobe.",
     )
     if net_key == "random":
+        seed_widget("n_slider")
         n = st.slider("Fahrer", *bounds("n_slider"), key="n_slider", help="Anzahl der Fahrer.")
         st.session_state[KEPT["n_slider"]] = n
+        seed_widget("reach_slider")
         reach = st.slider("Reichweite [min]", *bounds("reach_slider"), key="reach_slider", step=5, help="Wie weit zwei Fahrer höchstens auseinander liegen dürfen. Je größer, desto teurer wird es, Kosten zu ignorieren.")
         st.session_state[KEPT["reach_slider"]] = reach
+        seed_widget("ballung_slider")
         ballung = st.slider("Ballung [%]", *bounds("ballung_slider"), key="ballung_slider", step=25, help="0 = Fahrer gleichmäßig verteilt, 100 = alle um drei Stadtteile gruppiert.")
         st.session_state[KEPT["ballung_slider"]] = ballung
+        seed_widget("seed_input")
         seed = st.number_input("Zufalls-Seed", *bounds("seed_input"), key="seed_input", step=1)
         st.session_state[KEPT["seed_input"]] = seed
         st.button("🎲 Neue Karte generieren", width="stretch", on_click=randomize_seed, help="Würfelt einen neuen Zufalls-Seed. Die Verteilung über 100 feste Karten weiter unten ändert sich dabei nicht.")
