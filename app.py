@@ -90,13 +90,13 @@ je Fahrer UND je Blüte (eine Blüte kann etwas *kosten*), die dieselbe Rolle sp
 st.caption(
     "Anders als die Fall-Demos im Portfolio, die an einem Anwendungsfall mehrere Verfahren vergleichen, zeigt diese Demo - neuntes und letztes Stück des Verbesserungswege-Asts der Matching-Linie der \"Konzepte\"-Reihe - **ein** Verfahren an einem wachsenden Beispiel. "
     "Der Vergleich ist deshalb nicht \"Verfahren gegen Optimum\" (es IST das Optimum, mit Beweis auf jeder Karte), sondern \"Kosten berücksichtigt gegen ignoriert\": die **Prämie** gegenüber einer größtmöglichen Paarung, die alle Kanten für gleich teuer hält. "
-    "Danach ist der ganze Verbesserungswege-Ast der Matching-Linie fertig; offen bleibt in der ganzen Linie nur noch **Stabile Mitbewohner**."
+    "Danach ist der ganze Verbesserungswege-Ast der Matching-Linie fertig; mit dem Gale-Shapley-Ast (Stabile Mitbewohner, Krankenhaus-Zulassung, Top Trading Cycles, Nierentausch) und Online-Matching ist die ganze Linie gebaut."
 )
 
 with st.expander("So funktioniert Gewichteter Blossom", expanded=True):
     st.markdown(
         """
-1. **Dualwerte statt fester Kosten:** jeder Fahrer bekommt einen Dualwert `y` (wie die Potentiale der Ungarischen Methode), jede kontrahierte Blüte einen eigenen Dualwert `z >= 0`. Eine Kante ist **straff** (darf im Wald wachsen), wenn `y[i] + y[j] + 2·Σz = 2·Kosten(i, j)` gilt - sonst ist noch "Luft" (Schlupf) drin.
+1. **Dualwerte statt fester Kosten:** jeder Fahrer bekommt einen Dualwert `y` (wie die Potentiale der Ungarischen Methode), jede kontrahierte Blüte einen eigenen Dualwert `z >= 0`. Eine Kante ist **straff** (darf im Wald wachsen), wenn `y[i] + y[j] + 2·Σz + 2·Kosten(i, j)` genau die Konstante des Beweises erreicht (2·(c_max+1) bei "erst Paarzahl", sonst 0) - sonst ist noch "Luft" (Schlupf) drin.
 2. **Wald wachsen, wie bei Blossom:** von allen freien Fahrern aus wächst ein Wald über straffe Kanten; eine straffe Kante zwischen zwei geraden Fahrern verschiedener Bäume ist ein Verbesserungsweg, zwischen zwei geraden Fahrern desselben Baums schließt sie eine **Blüte** (mit neuem Dualwert `z = 0`).
 3. **Kein Fortschritt mehr? Die Dualwerte drehen** (ein `delta`-Schritt): der kleinste Schritt, der irgendwo eine neue Kante straff macht (oder - wenn nichts mehr geht - die Suche beendet), wird auf alle Dualwerte angewendet. Manchmal fällt dabei der Dualwert einer Blüte auf 0: sie wird **mitten im Suchlauf wieder aufgeklappt**.
 4. **Ende und Beweis:** ist die Paarung größtmöglich UND lässt sich kein Dualwert mehr sinnvoll bewegen, ist sie **bewiesen billigste**. Der Beweis prüft, dass jede Kante straff oder locker genug ist (nie negativ) und dass eine Identität aus Dualwerten genau die Kosten der Paarung ergibt.
@@ -336,7 +336,7 @@ st.markdown(
 | **Kleine bis mittlere Graphen** | Diese Version braucht O(n³); für riesige Graphen gibt es asymptotisch schnellere Verfahren (Gabows Skalierung). | (nicht in der Linie) |
 """
 )
-st.caption("Damit ist der ganze Verbesserungswege-Ast der Matching-Linie fertig (Wurzel, Verbesserungswege, Hopcroft–Karp, Ungarische Methode, Auktionsalgorithmus, Blossom, Gewichteter Blossom). Offen in der ganzen Linie bleibt nur noch Stabile Mitbewohner.")
+st.caption("Damit ist der ganze Verbesserungswege-Ast der Matching-Linie fertig (Wurzel, Verbesserungswege, Hopcroft–Karp, Ungarische Methode, Auktionsalgorithmus, Blossom, Gewichteter Blossom). Mit dem Gale-Shapley-Ast (Stabile Mitbewohner, Krankenhaus-Zulassung, Top Trading Cycles, Nierentausch) und Online-Matching ist die ganze Linie gebaut.")
 
 st.markdown("---")
 
@@ -369,6 +369,6 @@ st.markdown("---")
 
 st.caption(
     "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-    "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-    "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)"
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zur Reihe: [Matching: von Greedy bis Nierentausch](https://sebastianhanisch.net/konzepte-matching.html)."
 )
