@@ -333,7 +333,7 @@ st.markdown(
 | **Jeder Fahrer nimmt genau einen Partner** | Größere Gruppen (Kapazitäten, b-Matching) brauchen andere Verfahren. | (nicht in der Linie) |
 | **Größe zählt, nicht Zufriedenheit** | Haben die Fahrer Vorlieben, ist die stabile Paarung das Ziel - und in einer Gruppe muss keine existieren. | **Stabile Mitbewohner** (gebaut) |
 | **Alles ist vorab bekannt** | Kommen die Fahrer nacheinander und sind Zusagen bindend, ist nur Online-Matching möglich. | **Online-Matching** (gebaut) |
-| **Kleine bis mittlere Graphen** | Diese Version braucht O(n³); für riesige Graphen gibt es asymptotisch schnellere Verfahren (Gabows Skalierung). | (nicht in der Linie) |
+| **Kleine bis mittlere Graphen** | Diese Version braucht O(n³); für riesige Graphen gibt es asymptotisch schnellere Verfahren (Gabow 1990: O(n·(m + n log n)) mit besseren Datenstrukturen; Gabow/Tarjan 1991: Skalierung für ganzzahlige Gewichte). | (nicht in der Linie) |
 """
 )
 st.caption("Damit ist der ganze Verbesserungswege-Ast der Matching-Linie fertig (Wurzel, Verbesserungswege, Hopcroft–Karp, Ungarische Methode, Auktionsalgorithmus, Blossom, Gewichteter Blossom). Mit dem Gale-Shapley-Ast (Stabile Mitbewohner, Krankenhaus-Zulassung, Top Trading Cycles, Nierentausch) und Online-Matching ist die ganze Linie gebaut.")
