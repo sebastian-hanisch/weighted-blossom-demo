@@ -99,7 +99,7 @@ with st.expander("So funktioniert Gewichteter Blossom", expanded=True):
 1. **Dualwerte statt fester Kosten:** jeder Fahrer bekommt einen Dualwert `y` (wie die Potentiale der Ungarischen Methode), jede kontrahierte Blüte einen eigenen Dualwert `z >= 0`. Eine Kante ist **straff** (darf im Wald wachsen), wenn `y[i] + y[j] + 2·Σz + 2·Kosten(i, j)` genau die Konstante des Beweises erreicht (2·(c_max+1) bei "erst Paarzahl", sonst 0) - sonst ist noch "Luft" (Schlupf) drin.
 2. **Wald wachsen, wie bei Blossom:** von allen freien Fahrern aus wächst ein Wald über straffe Kanten; eine straffe Kante zwischen zwei geraden Fahrern verschiedener Bäume ist ein Verbesserungsweg, zwischen zwei geraden Fahrern desselben Baums schließt sie eine **Blüte** (mit neuem Dualwert `z = 0`).
 3. **Kein Fortschritt mehr? Die Dualwerte drehen** (ein `delta`-Schritt): der kleinste Schritt, der irgendwo eine neue Kante straff macht (oder - wenn nichts mehr geht - die Suche beendet), wird auf alle Dualwerte angewendet. Manchmal fällt dabei der Dualwert einer Blüte auf 0: sie wird **mitten im Suchlauf wieder aufgeklappt**.
-4. **Ende und Beweis:** ist die Paarung größtmöglich UND lässt sich kein Dualwert mehr sinnvoll bewegen, ist sie **bewiesen billigste**. Der Beweis prüft, dass jede Kante straff oder locker genug ist (nie negativ) und dass eine Identität aus Dualwerten genau die Kosten der Paarung ergibt.
+4. **Ende und Beweis:** ist die Paarung größtmöglich UND lässt sich kein Dualwert mehr sinnvoll bewegen, ist sie **bewiesen billigste**. Der Beweis prüft, dass jede Kante straff oder locker genug ist (nie negativ), dass jeder nicht gepaarte Fahrer den kleinsten Dualwert trägt und dass eine Identität aus Dualwerten genau die Kosten der Paarung ergibt (bei dieser Paarzahl; dass die Paarzahl selbst größtmöglich ist, belegt das Verfahren - die Prüfung gegen Brute Force und Bibliotheken steht weiter unten).
         """
     )
 
@@ -211,6 +211,7 @@ def _cert_table():
     rows = [("Straffheit (alle Kanten)", f"{ok(c['feasible'])} kleinster Schlupf {c['min_slack']}"),
             ("Gewählte Kanten straff", ok(c["matched_tight"])),
             ("Blütendualwerte ≥ 0", ok(c["z_nonneg"])),
+            ("Freie Fahrer tragen den kleinsten Dualwert", ok(c["free_ok"])),
             ("Primal-Dual-Identität", f"{ok(c['identity_holds'])} {c['identity_lhs']} = {c['identity_rhs']}")]
     return {"Bestandteil": [r[0] for r in rows], "Ergebnis": [r[1] for r in rows]}
 

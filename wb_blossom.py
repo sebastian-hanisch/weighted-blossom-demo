@@ -753,6 +753,14 @@ def certificate(sc, pairs, y, active_blossom_z, blossom_members_by_id, maxcardin
     lhs = sum(y[v] for v in matched) + sum(2 * z * ((len(members.get(bid, ())) - 1) // 2) for bid, z in active_blossom_z)
     rhs = shift * len(pairs) - 2 * total_cost
     identity_holds = lhs == rhs
-    all_ok = feasible and z_nonneg and identity_holds and matched_tight
+    # Freie Ecken: ohne diese Bedingung "beweist" die Prüfung auch eine zu teure Paarung (zwei getrennte Kanten mit Kosten 5 und 1, gewählt
+    # ist die teure: y = (1, 1, 5, 5) ist zulässig, auf der gewählten Kante straff, die Identität geht auf). Wie in networkx' `verifyOptimum`:
+    # jede freie Ecke trägt den kleinsten Dualwert (maxcardinality=True) bzw. 0 bei überall y >= 0 (maxcardinality=False).
+    free = [v for v in range(n) if v not in matched]
+    if maxcardinality:
+        free_ok = all(y[v] == min(y) for v in free)
+    else:
+        free_ok = all(y[v] == 0 for v in free) and (n == 0 or min(y) >= 0)
+    all_ok = feasible and z_nonneg and identity_holds and matched_tight and free_ok
     return {"feasible": feasible, "identity_holds": identity_holds, "identity_lhs": lhs, "identity_rhs": rhs,
-            "min_slack": min_slack if min_slack is not None else 0, "z_nonneg": z_nonneg, "matched_tight": matched_tight, "all_ok": all_ok}
+            "min_slack": min_slack if min_slack is not None else 0, "z_nonneg": z_nonneg, "matched_tight": matched_tight, "free_ok": free_ok, "all_ok": all_ok}

@@ -178,7 +178,7 @@ def test_first_step_shows_the_start_and_the_last_the_proof():
     _step(at).set_value(int(_step(at).max))
     at.run()
     proof = next(t.value.to_dict("list") for t in at.table if "Primal-Dual-Identität" in t.value.to_dict("list").get("Bestandteil", []))
-    assert len(proof["Bestandteil"]) == 4 and all(v.startswith("✅") for v in proof["Ergebnis"])
+    assert len(proof["Bestandteil"]) == 5 and all(v.startswith("✅") for v in proof["Ergebnis"])
 
 
 def test_a_delta_step_shows_a_touched_table():
