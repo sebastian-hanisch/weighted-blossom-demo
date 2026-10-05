@@ -346,15 +346,15 @@ with st.expander("📐 Mathematische Formulierung"):
         r"""
 **Modell.** Allgemeiner Graph $G=(V,E)$ mit Kosten $c_{ij}\ge 0$. Gesucht: eine Paarung $M$, erst mit größtmöglicher Kardinalität, unter diesen mit kleinster Kostensumme.
 
-**Ersatzgewicht.** Der Löser maximiert intern; bei „erst Paarzahl, dann Kosten" $iw(i,j)=(c_{\max}+1)-c_{ij}$ (immer $\ge 1$, macht jede Kante lohnend - die interne Maximierung bevorzugt darum automatisch möglichst viele Paare); ohne Nebenbedingung an die Anzahl $iw(i,j)=-c_{ij}$.
+**Ersatzgewicht.** Der Löser maximiert intern; bei „erst Paarzahl, dann Kosten“ $iw(i,j)=(c_{\max}+1)-c_{ij}$ (immer $\ge 1$, macht jede Kante lohnend - die interne Maximierung bevorzugt darum automatisch möglichst viele Paare); ohne Nebenbedingung an die Anzahl $iw(i,j)=-c_{ij}$.
 
 **Dualwerte.** $y_v$ je Ecke (verdoppelt: $y_v=2u(v)$, deshalb immer ganzzahlig, auch wenn $u(v)$ halbzahlig ist), $z_B\ge 0$ je Blüte. Straffheit im internen Maximum: $y_i+y_j+2\sum_{B\ni i,j} z_B - 2\,iw(i,j)\ge 0$, Gleichheit auf gewählten Kanten.
 
-**Zurückgerechnet auf echte Kosten** (Minimierungs-Dualität, dieselbe Konvention wie bei der Ungarischen Methode - Kosten minus Dualwerte $\ge 0$): mit „erst Paarzahl, dann Kosten" gilt für jede mögliche Kante
+**Zurückgerechnet auf echte Kosten** (Minimierungs-Dualität, dieselbe Konvention wie bei der Ungarischen Methode - Kosten minus Dualwerte $\ge 0$): mit „erst Paarzahl, dann Kosten“ gilt für jede mögliche Kante
 $$y_i+y_j+2\sum_{B\ni i,j} z_B + 2\,c_{ij} \;\ge\; 2\,(c_{\max}+1),$$
 Gleichheit auf jeder gewählten Kante; ohne Nebenbedingung an die Anzahl entfällt die rechte Seite (sie wird 0). Die **Primal-Dual-Identität** (Gegenprobe, wie bei der Ungarischen Methode die Kostenidentität): summiert man diese Gleichheit über alle gewählten Kanten, ergibt sich
 $$\sum_{v\in M} y_v + \sum_B z_B\cdot\frac{|B|-1}{2}\cdot 2 \;=\; (c_{\max}+1)\cdot 2|M| - 2\sum_{(i,j)\in M} c_{ij}$$
-(nur über gepaarte Ecken - freie Ecken tragen bei „erst Paarzahl" einen eigenen, nicht notwendig verschwindenden Dualwert). Stimmt die Summe, ist $M$ bewiesen die billigste Paarung ihrer Größe.
+(nur über gepaarte Ecken - freie Ecken tragen bei „erst Paarzahl“ einen eigenen, nicht notwendig verschwindenden Dualwert). Stimmt die Summe, ist $M$ bewiesen die billigste Paarung ihrer Größe.
 
 **Delta-Schritte.** Kommt der Wald nicht weiter, wird der kleinste von vier möglichen Schritten angewendet: δ1 (ein freier Dualwert erreicht 0 - Suche endet, nur ohne Nebenbedingung an die Anzahl), δ2 (kleinster Schlupf gerade↔frei), δ3 (kleinster Schlupf/2 gerade↔gerade über Bäume), δ4 (kleinster Dualwert über Blüten, die dabei mitten im Suchlauf wieder aufgeklappt werden).
 
