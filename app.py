@@ -331,7 +331,7 @@ st.markdown(
     """
 | Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |
 |---|---|---|
-| **Jeder Fahrer nimmt genau einen Partner** | Größere Gruppen (Kapazitäten, b-Matching) brauchen andere Verfahren. | (nicht in der Linie) |
+| **Zwei Fahrer je Auto** | Sitzen drei oder vier in einem Auto, müssen alle einander erreichen. Die Fahrer in solche Gruppen zu zerlegen ist schon für Dreiergruppen NP-schwer (Partition into Triangles); Blossom hilft dort nicht. Haben die Autos feste Plätze und sind Fahrer und Mitfahrer getrennt, ist es eine Zuordnung mit Kapazitäten. b-Matching passt nicht: es lässt einen Fahrer in mehreren Paaren zu, bildet aber keine Gruppen. | Zuordnung mit Kapazitäten und Vorlieben: **Krankenhaus-Zulassung** (gebaut); Gruppen ab drei: (nicht in der Linie) |
 | **Größe zählt, nicht Zufriedenheit** | Haben die Fahrer Vorlieben, ist die stabile Paarung das Ziel - und in einer Gruppe muss keine existieren. | **Stabile Mitbewohner** (gebaut) |
 | **Alles ist vorab bekannt** | Kommen die Fahrer nacheinander und sind Zusagen bindend, ist nur Online-Matching möglich. | **Online-Matching** (gebaut) |
 | **Kleine bis mittlere Graphen** | Diese Version braucht O(n³); für riesige Graphen gibt es asymptotisch schnellere Verfahren (Gabow 1990: O(n·(m + n log n)) mit besseren Datenstrukturen; Gabow/Tarjan 1991: Skalierung für ganzzahlige Gewichte). | (nicht in der Linie) |
